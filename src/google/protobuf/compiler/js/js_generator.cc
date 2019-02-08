@@ -2331,7 +2331,7 @@ void Generator::GenerateClassFieldFromObject(
     if (field->is_repeated()) {
       {
         printer->Print(
-            "  goog.isDef(obj.$name$) && "
+            "  obj.$name$ !== undefined && "
             "jspb.Message.setRepeatedWrapperField(\n"
             "      msg, $index$, goog.array.map(obj.$name$, function(i) {\n"
             "        return $fieldclass$.fromObject(i);\n"
@@ -2342,7 +2342,7 @@ void Generator::GenerateClassFieldFromObject(
       }
     } else {
       printer->Print(
-          "  goog.isDef(obj.$name$) && jspb.Message.setWrapperField(\n"
+          "  obj.$name$ !== undefined && jspb.Message.setWrapperField(\n"
           "      msg, $index$, $fieldclass$.fromObject(obj.$name$));\n",
           "name", JSObjectFieldName(options, field),
           "index", JSFieldIndex(field),
@@ -2351,7 +2351,7 @@ void Generator::GenerateClassFieldFromObject(
   } else {
     // Simple (primitive) field.
     printer->Print(
-        "  goog.isDef(obj.$name$) && jspb.Message.setField(msg, $index$, "
+        "  obj.$name$ !== undefined && jspb.Message.setField(msg, $index$, "
         "obj.$name$);\n",
         "name", JSObjectFieldName(options, field),
         "index", JSFieldIndex(field));
