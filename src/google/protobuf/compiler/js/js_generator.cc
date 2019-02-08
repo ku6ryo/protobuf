@@ -1906,6 +1906,7 @@ void Generator::GenerateClass(const GeneratorOptions& options,
 
 
     GenerateClassToObject(options, printer, desc);
+    GenerateClassFromObject(options, printer, desc);
     // These must come *before* the extension-field info generation in
     // GenerateClassRegistration so that references to the binary
     // serialization/deserialization functions may be placed in the extension
@@ -2309,7 +2310,7 @@ void Generator::GenerateClassFieldFromObject(
       // Since the map values are of message type, we have to do some extra work
       // to recursively call fromObject() on them before setting the map field.
       printer->Print(
-          "  goog.isDef(obj.$name$) && jspb.Message.setWrapperField(\n"
+          "  obj.$name$ !== undefined && jspb.Message.setWrapperField(\n"
           "      msg, $index$, jspb.Map.fromObject(obj.$name$, $fieldclass$, "
           "$fieldclass$.fromObject));\n",
           "name", JSObjectFieldName(options, field),
@@ -2320,7 +2321,7 @@ void Generator::GenerateClassFieldFromObject(
       // map containers wrapping underlying arrays, so we can simply directly
       // set the array here without fear of a stale wrapper.
       printer->Print(
-          "  goog.isDef(obj.$name$) && "
+          "  obj.$name$ !== undefined && "
           "jspb.Message.setField(msg, $index$, obj.$name$);\n",
           "name", JSObjectFieldName(options, field),
           "index", JSFieldIndex(field));
