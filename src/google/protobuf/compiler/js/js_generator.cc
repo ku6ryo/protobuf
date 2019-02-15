@@ -2310,7 +2310,7 @@ void Generator::GenerateClassFieldFromObject(
       // Since the map values are of message type, we have to do some extra work
       // to recursively call fromObject() on them before setting the map field.
       printer->Print(
-          "  obj.$name$ !== undefined && jspb.Message.setWrapperField(\n"
+          "  obj.$name$ !== undefined && obj.$name$ !== null && jspb.Message.setWrapperField(\n"
           "      msg, $index$, jspb.Map.fromObject(obj.$name$, $fieldclass$, "
           "$fieldclass$.fromObject));\n",
           "name", JSObjectFieldName(options, field),
@@ -2321,7 +2321,7 @@ void Generator::GenerateClassFieldFromObject(
       // map containers wrapping underlying arrays, so we can simply directly
       // set the array here without fear of a stale wrapper.
       printer->Print(
-          "  obj.$name$ !== undefined && "
+          "  obj.$name$ !== undefined && obj.$name$ !== null && "
           "jspb.Message.setField(msg, $index$, obj.$name$);\n",
           "name", JSObjectFieldName(options, field),
           "index", JSFieldIndex(field));
@@ -2331,7 +2331,7 @@ void Generator::GenerateClassFieldFromObject(
     if (field->is_repeated()) {
       {
         printer->Print(
-            "  obj.$name$ !== undefined && "
+            "  obj.$name$ !== undefined && obj.$name$ !== null && "
             "jspb.Message.setRepeatedWrapperField(\n"
             "      msg, $index$, goog.array.map(obj.$name$, function(i) {\n"
             "        return $fieldclass$.fromObject(i);\n"
@@ -2342,7 +2342,7 @@ void Generator::GenerateClassFieldFromObject(
       }
     } else {
       printer->Print(
-          "  obj.$name$ !== undefined && jspb.Message.setWrapperField(\n"
+          "  obj.$name$ !== undefined && obj.$name$ !== null && jspb.Message.setWrapperField(\n"
           "      msg, $index$, $fieldclass$.fromObject(obj.$name$));\n",
           "name", JSObjectFieldName(options, field),
           "index", JSFieldIndex(field),
@@ -2351,7 +2351,7 @@ void Generator::GenerateClassFieldFromObject(
   } else {
     // Simple (primitive) field.
     printer->Print(
-        "  obj.$name$ !== undefined && jspb.Message.setField(msg, $index$, "
+        "  obj.$name$ !== undefined && obj.$name$ !== null && jspb.Message.setField(msg, $index$, "
         "obj.$name$);\n",
         "name", JSObjectFieldName(options, field),
         "index", JSFieldIndex(field));
