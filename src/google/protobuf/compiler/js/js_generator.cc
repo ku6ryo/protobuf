@@ -2333,7 +2333,7 @@ void Generator::GenerateClassFieldFromObject(
         printer->Print(
             "  obj.$name$ !== undefined && obj.$name$ !== null && "
             "jspb.Message.setRepeatedWrapperField(\n"
-            "      msg, $index$, goog.array.map(obj.$name$, function(i) {\n"
+            "      msg, $index$, obj.$name$.map(function(i) {\n"
             "        return $fieldclass$.fromObject(i);\n"
             "      }));\n",
             "name", JSObjectFieldName(options, field),
