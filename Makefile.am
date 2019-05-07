@@ -607,6 +607,7 @@ php_EXTRA_DIST=                                                       \
   php/ext/google/protobuf/utf8.h                                      \
   php/generate_descriptor_protos.sh                                   \
   php/phpunit.xml                                                     \
+  php/release.sh                                                      \
   php/src/GPBMetadata/Google/Protobuf/Any.php                         \
   php/src/GPBMetadata/Google/Protobuf/Api.php                         \
   php/src/GPBMetadata/Google/Protobuf/Duration.php                    \
@@ -734,6 +735,7 @@ php_EXTRA_DIST=                                                       \
   php/tests/autoload.php                                              \
   php/tests/bootstrap_phpunit.php                                     \
   php/tests/compatibility_test.sh                                     \
+  php/tests/compile_extension.sh                                      \
   php/tests/descriptors_test.php                                      \
   php/tests/encode_decode_test.php                                    \
   php/tests/gdb_test.sh                                               \
@@ -950,6 +952,7 @@ ruby_EXTRA_DIST=                                                             \
   ruby/tests/test_ruby_package.proto                                         \
   ruby/tests/generated_code_test.rb                                          \
   ruby/tests/well_known_types_test.rb                                        \
+  ruby/tests/type_errors.rb                                                  \
   ruby/travis-test.sh
 
 js_EXTRA_DIST=                                                         \
@@ -1087,6 +1090,7 @@ EXTRA_DIST = $(@DIST_LANG@_EXTRA_DIST)   \
   cmake/protoc.cmake                     \
   cmake/tests.cmake                      \
   cmake/version.rc.in                    \
+  compiler_config_setting.bzl            \
   editors/README.txt                     \
   editors/proto.vim                      \
   editors/protobuf-mode.el               \

@@ -201,7 +201,7 @@ cc_library(
 # TODO(keveman): Remove this target once the support gets added to Bazel.
 cc_library(
     name = "protobuf_headers",
-    hdrs = glob(["src/**/*.h"]),
+    hdrs = glob(["src/**/*.h", "src/**/*.inc"]),
     includes = ["src/"],
     visibility = ["//visibility:public"],
 )
@@ -638,6 +638,7 @@ java_library(
     visibility = ["//visibility:public"],
     deps = [
         "protobuf_java",
+        "//external:error_prone_annotations",
         "//external:gson",
         "//external:guava",
     ],
